@@ -1,4 +1,7 @@
 public interface IDamagable
 {
-    public void TakeHit(int damage);
+    public void TakeHit(int damage)
+    {
+
+    }
 }

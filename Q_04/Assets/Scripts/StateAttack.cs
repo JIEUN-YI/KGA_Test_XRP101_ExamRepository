@@ -32,6 +32,7 @@ public class StateAttack : PlayerState
 
     public override void Exit()
     {
+        Debug.Log("idle로 상태전환");
         Machine.ChangeState(StateType.Idle);
     }
 
@@ -54,8 +55,8 @@ public class StateAttack : PlayerState
     {
         yield return _wait;
 
-        Attack();
-        Exit();
+        Attack(); // 공격 
+        Exit(); // 상태 변화를 위해 Attack에서 빠져나가도록 구현
     }
 
 }
