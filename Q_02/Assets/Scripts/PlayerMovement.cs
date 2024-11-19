@@ -28,7 +28,12 @@ public class PlayerMovement : MonoBehaviour
         direction.z = Input.GetAxisRaw("Vertical");
 
         if (direction == Vector3.zero) return;
-        
+        // 벡터의 크기가 커서 대각선이동 시 속도가 빨라지는 현상 수정을 위한 정규화 과정 진행
+        if(direction.magnitude > 0)
+        {
+            direction.Normalize();
+        } 
+      
         transform.Translate(_status.MoveSpeed * Time.deltaTime * direction);
     }
 }
