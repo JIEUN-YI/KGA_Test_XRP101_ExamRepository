@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class BulletController : PooledBehaviour
 {
-    [SerializeField] private float _force;
-    [SerializeField] private float _deactivateTime;
-    [SerializeField] private int _damageValue;
+    [SerializeField] private float _force; // 가해지는 힘
+    [SerializeField] private float _deactivateTime; //비활성화시간
+    [SerializeField] public int _damageValue; // 데미지
 
     private Rigidbody _rigidbody;
     private WaitForSeconds _wait;
+
+    [SerializeField] PlayerController _playerController;
     
     private void Awake()
     {
@@ -26,12 +28,20 @@ public class BulletController : PooledBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            /*
             other
                 .GetComponent<PlayerController>()
                 .TakeHit(_damageValue);
+            */
+            _playerController.TakeHit(_damageValue);
+            // 충돌한 경우 총알 반환
+            ReturnPool();
         }
     }
-
+    private IEnumerator SelectRountine()
+    {
+        yield return new WaitForSeconds(1f);
+    }
     private void Init()
     {
         _wait = new WaitForSeconds(_deactivateTime);

@@ -46,7 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 013c59543c7764860abf7a37668cbfe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Hp>k__BackingField: 15
+  <Hp>k__BackingField: 20
+  curHp: 0
 --- !u!82 &-117981830401906550
 AudioSource:
   m_ObjectHideFlags: 0
@@ -236,7 +237,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 8254210141019104514}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
