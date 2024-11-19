@@ -33,7 +33,7 @@ public class BulletController : PooledBehaviour
                 .GetComponent<PlayerController>()
                 .TakeHit(_damageValue);
             */
-            _playerController.TakeHit(_damageValue);
+            // _playerController.TakeHit(_damageValue);
             // 충돌한 경우 총알 반환
             ReturnPool();
         }

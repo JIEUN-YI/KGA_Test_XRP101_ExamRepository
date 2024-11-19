@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     {
         Init();
     }
-    /*
+    
     private void OnTriggerEnter(Collider other)
     {
         // 총알과 충돌하는 경우
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
             TakeHit(damage);
         }
     }
-    */
+    
 
     private void Init()
     {
