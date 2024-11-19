@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class BulletController : PooledBehaviour
 {
-    [SerializeField] private float _force;
-    [SerializeField] private float _deactivateTime;
-    [SerializeField] private int _damageValue;
+    [SerializeField] private float _force; // 가해지는 힘
+    [SerializeField] private float _deactivateTime; //비활성화시간
+    [SerializeField] private int _damageValue; // 데미지
 
     private Rigidbody _rigidbody;
     private WaitForSeconds _wait;
@@ -40,6 +40,7 @@ public class BulletController : PooledBehaviour
     
     private void Fire()
     {
+        Debug.Log("총알의 발사");
         _rigidbody.AddForce(transform.forward * _force, ForceMode.Impulse);
     }
 
@@ -60,6 +61,7 @@ public class BulletController : PooledBehaviour
         if (!(t is Transform)) return;
         
         transform.LookAt((t as Transform));
+        Debug.Log("총알의 발사를 실행");
         Fire();
     }
 }

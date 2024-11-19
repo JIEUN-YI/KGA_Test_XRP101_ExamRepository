@@ -1,14 +1,12 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TurretController : MonoBehaviour
 {
-    [SerializeField] private Transform _muzzlePoint;
-    [SerializeField] private CustomObjectPool _bulletPool;
-    [SerializeField] private float _fireCooltime;
-    
+    [SerializeField] private Transform _muzzlePoint; // 총알 발사 위치
+    [SerializeField] private CustomObjectPool _bulletPool; // 발사할 총알
+    [SerializeField] private float _fireCooltime; // 총알 발사 간격 시간
+
     private Coroutine _coroutine;
     private WaitForSeconds _wait;
 
@@ -28,7 +26,7 @@ public class TurretController : MonoBehaviour
     private void Init()
     {
         _coroutine = null;
-        _wait = new WaitForSeconds(_fireCooltime);
+        _wait = new WaitForSeconds(_fireCooltime); // 총알의 발사 간격 설정
         _bulletPool.CreatePool();
     }
 
@@ -37,17 +35,18 @@ public class TurretController : MonoBehaviour
         while (true)
         {
             yield return _wait;
-            
+
+            // 플레이어를 바라보기
             transform.rotation = Quaternion.LookRotation(new Vector3(
                 target.position.x,
                 0,
                 target.position.z)
             );
-            
+
             PooledBehaviour bullet = _bulletPool.TakeFromPool();
             bullet.transform.position = _muzzlePoint.position;
             bullet.OnTaken(target);
-            
+
         }
     }
 
