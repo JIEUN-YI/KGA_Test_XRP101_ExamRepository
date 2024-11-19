@@ -7,10 +7,12 @@ public class BulletController : PooledBehaviour
 {
     [SerializeField] private float _force; // 가해지는 힘
     [SerializeField] private float _deactivateTime; //비활성화시간
-    [SerializeField] private int _damageValue; // 데미지
+    [SerializeField] public int _damageValue; // 데미지
 
     private Rigidbody _rigidbody;
     private WaitForSeconds _wait;
+
+    [SerializeField] PlayerController _playerController;
     
     private void Awake()
     {
@@ -26,12 +28,20 @@ public class BulletController : PooledBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            /*
             other
                 .GetComponent<PlayerController>()
                 .TakeHit(_damageValue);
+            */
+            _playerController.TakeHit(_damageValue);
+            // 충돌한 경우 총알 반환
+            ReturnPool();
         }
     }
-
+    private IEnumerator SelectRountine()
+    {
+        yield return new WaitForSeconds(1f);
+    }
     private void Init()
     {
         _wait = new WaitForSeconds(_deactivateTime);
@@ -40,7 +50,6 @@ public class BulletController : PooledBehaviour
     
     private void Fire()
     {
-        Debug.Log("총알의 발사");
         _rigidbody.AddForce(transform.forward * _force, ForceMode.Impulse);
     }
 
@@ -61,7 +70,6 @@ public class BulletController : PooledBehaviour
         if (!(t is Transform)) return;
         
         transform.LookAt((t as Transform));
-        Debug.Log("총알의 발사를 실행");
         Fire();
     }
 }

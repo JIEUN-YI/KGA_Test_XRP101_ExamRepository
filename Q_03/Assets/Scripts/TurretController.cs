@@ -23,6 +23,18 @@ public class TurretController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 플레이어가 범위를 벗어나는 경우 발사 코루틴 멈춤
+    /// </summary>
+    /// <param name="other"></param>
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            StopCoroutine(_coroutine);
+        }
+    }
+
     private void Init()
     {
         _coroutine = null;
