@@ -41,6 +41,11 @@ public class CubeManager : MonoBehaviour
     {
         GameObject cube = Instantiate(_cubePrefab);
         _cubeController = cube.GetComponent<CubeController>();
-        _cubeSetPoint = _cubeController.SetPoint;
+        // _cubeSetPoint = _cubeController.SetPoint; /////
+
+        /* 보강
+         * 1. 값타입과 참조타입의 차이
+         * 2. 클래스와 구조체
+         */
     }
 }

@@ -24,9 +24,16 @@ public class CameraController : MonoBehaviour
     {
         if (!_hasFollowTarget) return;
 
-        _followTarget.SetPositionAndRotation(
+        /* 따라다닐 대상의 위치를 현재 기준으로 맞추는 함수
+        // 카메라가 followTarget의 위치나 회전을 이동할 필요 X-> 카메라가 followTarget을 따라가야함
+        _followTarget.SetPositionAndRotation( // Position과 Rotation을 동시에 지정
             transform.position,
             transform.rotation
+            );*/
+        // 즉 현재 오브젝트(카메라)의 위치를 followTarget위치와 회전으로 이동 설정
+        transform.SetPositionAndRotation( // Position과 Rotation을 동시에 지정
+            _followTarget.position,
+            _followTarget.rotation
             );
     }
 }
